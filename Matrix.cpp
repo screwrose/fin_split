@@ -119,49 +119,6 @@ Matrix Matrix::operator*(const Matrix& other) const
     return result;
 }
 
-//determinant
-double Matrix::determinant() const
-{
-    if ( rows != columns )
-    {
-        cout << "The matrix is not square, therefore a determinant cannot be calculated.";
-        return 0.0;
-    }
-
-    vector<vector<double>> tempData = data; //clone the vector holding the values of the matrix
-    int n = rows;
-    double det = 1.0;
-    for (int i=0; i<n; i++) 
-    {
-        int maxRow = i;
-        for (int j= i+1 ; j< n; j++) 
-        {
-            if (abs(tempData[j][i]) > abs(tempData[maxRow][i])) 
-            {
-                maxRow = j;
-            }
-        }
-        if (maxRow != i) 
-        {
-            swap(tempData[i], tempData[maxRow]);
-            det *= -1.0;
-        }
-        if (tempData[i][i] == 0.0) 
-        {
-            return 0.0;
-        }
-        det *= tempData[i][i];
-        for (int j = i + 1; j < n; j++) 
-        {
-            double factor = tempData[j][i] / tempData[i][i];
-            for (int k = i + 1; k < n; k++) 
-            {
-                tempData[j][k] -= factor * tempData[i][k];
-            }
-        }
-    }
-    return det;
-}
 
 //matrix inversion
 Matrix Matrix::operator%(const Matrix& other) const
@@ -246,4 +203,49 @@ Matrix Matrix::operator%(const Matrix& other) const
     }
 
     return identity;
+}
+
+
+//determinant
+double Matrix::determinant() const
+{
+    if ( rows != columns )
+    {
+        cout << "The matrix is not square, therefore a determinant cannot be calculated.";
+        return 0.0;
+    }
+
+    vector<vector<double>> tempData = data; //clone the vector holding the values of the matrix
+    int n = rows;
+    double det = 1.0;
+    for (int i=0; i<n; i++) 
+    {
+        int maxRow = i;
+        for (int j= i+1 ; j< n; j++) 
+        {
+            if (abs(tempData[j][i]) > abs(tempData[maxRow][i])) 
+            {
+                maxRow = j;
+            }
+        }
+        if (maxRow != i) 
+        {
+            swap(tempData[i], tempData[maxRow]);
+            det *= -1.0;
+        }
+        if (tempData[i][i] == 0.0) 
+        {
+            return 0.0;
+        }
+        det *= tempData[i][i];
+        for (int j = i + 1; j < n; j++) 
+        {
+            double factor = tempData[j][i] / tempData[i][i];
+            for (int k = i + 1; k < n; k++) 
+            {
+                tempData[j][k] -= factor * tempData[i][k];
+            }
+        }
+    }
+    return det;
 }

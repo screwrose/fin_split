@@ -32,7 +32,6 @@ class Matrix
     Matrix operator%(const Matrix& other) const; // %, used for inverse
 
     double determinant() const;                     //determinant calculation
-    Matrix calculateInverse(const Matrix& matrix);  //matrix inversion
 
 };
 

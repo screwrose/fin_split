@@ -22,7 +22,11 @@ int main()
     Matrix E = A * B;
     cout << "A * B is: " << E << endl;
 
+    Matrix J = B * A;
+    cout << "B * A is: " << J << endl;
+
     cout << "The determinant of A is: " << A.determinant() << endl << endl;
+    cout << "The determinant of B is: " << B.determinant() << endl << endl;
     
     Matrix F = A % A;
     cout << "The inverse matrix of A is: " << F << endl;
