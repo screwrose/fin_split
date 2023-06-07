@@ -14,23 +14,26 @@ class Matrix
         vector<vector<double>> data;
 
     public:
-        Matrix();
-        Matrix(int rows, int columns);
-        Matrix(const Matrix& other);
-        ~Matrix();
 
-        friend istream& operator>>(istream& in, Matrix& matrix);
-        friend ostream& operator<<(ostream& out, const Matrix& matrix);
+    Matrix();                       //default constructor
+    Matrix(int rows, int columns);  //constructor with parameters
+    Matrix(const Matrix& other);    //copy constructor
+    ~Matrix();                      //destructor
 
-        Matrix& operator=(const Matrix& other);
+    friend istream& operator>>(istream& in, Matrix& matrix);        //overloaded stream extraction >>, used to get user input
+    friend ostream& operator<<(ostream& out, const Matrix& matrix); //overloaded stream insertion <<, used to print matrices
 
-        Matrix operator+(const Matrix& other) const;
-        Matrix operator-(const Matrix& other) const;
-        Matrix operator*(const Matrix& other) const;
-        Matrix operator%(const Matrix& other) const;
+    Matrix &operator=(const Matrix& other); //assignment operator overload
 
-        double determinant() const;
-        Matrix calculateInverse(const Matrix& matrix);
+    //overloaded arithmetical operators:
+    Matrix operator+(const Matrix& other) const; // +
+    Matrix operator-(const Matrix& other) const; // -
+    Matrix operator*(const Matrix& other) const; // *
+    Matrix operator%(const Matrix& other) const; // %, used for inverse
+
+    double determinant() const;                     //determinant calculation
+    Matrix calculateInverse(const Matrix& matrix);  //matrix inversion
+
 };
 
 #endif  // MATRIX_H
