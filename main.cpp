@@ -36,7 +36,7 @@ int main()
     Matrix I = B * F;
     cout << "Matrix B 'divided' by matrix A is: " << I << endl;
 
-    cout << "Inverting matrices without using any libraries is a pain in the ass.." << endl;
+    cout << "If only I had used Eigen3 for the matrix inversion.." << endl;
 
     return 0;
 }
